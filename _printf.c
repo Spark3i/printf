@@ -48,17 +48,13 @@ int _printf(const char *format, ...)
 					break;
 			}
 		}
-<<<<<<< HEAD
 		else
 		{
 			putchar(format[i]);
 			count++;
 		}
 		i++;
-=======
->>>>>>> 3fb18b5a2e0ff220f04a05a10cd1da8ab86be9cf
 	}
 	va_end(ap);
 	return (count);
 }
-
