@@ -9,7 +9,7 @@
   */
 int _printf(const char *format, ...)
 {
-	int i = 0;
+	int i = 0, count = 0, c;
 	char *x;
 	va_list ap;
 
@@ -18,28 +18,42 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+			i++;
 			switch (format[i])
 			{
 				case 'c':
-					printf("%c", va_arg(ap, int));
+					c =  va_arg(ap, int);
+					putchar(c);
+					count++;
 					break;
 				case 's':
 					x = va_arg(ap, char *);
 					if (!x)
 						x = "(nil)";
-					printf("%s", x);
+					while (*x)
+					{
+						putchar(*x);
+						count++;
+						x++;
+					}
 					break;
 				case '%':
-					printf("%%");
+					putchar('%');
+					count++;
 					break;
 				default:
-					i++;
-					continue;
+					i--;
+					break;
 			}
 		}
-		
+		else
+		{
+			putchar(format[i]);
+			count++;
+		}
+		i++;
 	}
 	va_end(ap);
-	return (0);
+	return (count);
 }
 
