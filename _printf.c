@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-
+#include <string.h>
 /**
   * _printf- produces given output
   * @format: format to print
@@ -11,7 +11,7 @@
   */
 int _printf(const char *format, ...)
 {
-	int i = 0, count = 0, c;
+	int i = 0, count = 0;
 	char *x;
 	va_list ap;
 
@@ -24,20 +24,14 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					c =  va_arg(ap, int);
-					putchar(c);
+					putchar(va_arg(ap, int));
 					count++;
 					break;
 				case 's':
 					x = va_arg(ap, char *);
-					if (!x)
-						x = "(nil)";
-					while (*x)
-					{
-						putchar(*x);
-						count++;
-						x++;
-					}
+					x = x ? x : "(nil)";
+					printf("%s", x);
+					count += strlen(x);
 					break;
 				case '%':
 					putchar('%');
