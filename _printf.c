@@ -1,11 +1,13 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 /**
-  *_printf- produces given output
-  *@format: format to print
-  *Return: the output in a specific format
+  * _printf- produces given output
+  * @format: format to print
+  * Return: the output in a specific format
+  *
   */
 int _printf(const char *format, ...)
 {
@@ -37,7 +39,6 @@ int _printf(const char *format, ...)
 					continue;
 			}
 		}
-		
 	}
 	va_end(ap);
 	return (0);
