@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-  * _printf - implementing the pritf function
+  * _printf - implementing the printf function
   * @format: ...
   * Return: ...
   *
