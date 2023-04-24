@@ -1,6 +1,8 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
 /**
   * _printf- produces given output
   * @format: format to print
@@ -27,7 +29,7 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					x = va_arg(ap, char *);
-					if (!x)
+					if(!x)
 						x = "(nil)";
 					while (*x)
 					{
@@ -38,6 +40,10 @@ int _printf(const char *format, ...)
 				case '%':
 					putchar('%');
 					count++;
+					break;
+				default:
+					count += putchar('%');
+					i--;
 					break;
 			}
 		}

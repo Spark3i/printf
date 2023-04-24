@@ -14,6 +14,13 @@ int main(void)
 	unsigned int ui;
 	void *addr;
 
+	_printf("%c\n", 'a');
+	_printf("%c,   %s\n", 'b', "print this testing");
+	_printf("%%%%%c\n", 'a');
+	_printf("%%%%%%\n");
+	_printf("----------------\n");
+	_printf("%%usjnjkkosik818%%\n");
+
 	len = _printf("Let's try to printf a simple sentence.\n");
 	len2 = printf("Let's try to printf a simple sentence.\n");
 	ui = (unsigned int)INT_MAX + 1024;
