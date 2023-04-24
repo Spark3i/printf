@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
 
 /**
   * _printf - implementing the pritf function
@@ -8,36 +10,44 @@
   */
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0, ex_res = 0;
-
+	unsigned int i = 0;
+	char *x;
 	va_list args;
 
 	va_start(args, format);
-
 	for (; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
-			_putchar(format[i]);
+			putchar(format[i]);
 		}
 		else if (format[i + 1] == 'c')
 		{
-			_putchar(va_arg(args, int));
+			putchar(va_arg(args, int));
 			i++;
 		}
 		else if (format[i + 1] == 's')
 		{
-			int r_value = put_str(va_arg(args, char *));
-
+			x = (va_arg(args, char *));
+			if (!x)
+				x = "(nil)";
+			while (*x)
+			{
+				putchar(*x);
+				x++;
+			}
 			i++;
-			ex_res += (r_value - 1);
 		}
 		else if (format[i + 1] == '%')
 		{
-			_putchar('%');
+			putchar('%');
 			i++;
 		}
-		ex_res += 1;
+		else
+		{
+			putchar(format[i]);
+		}
 	}
-	return (ex_res);
+	va_end(args);
+	return (i);
 }
