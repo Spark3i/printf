@@ -1,52 +1,43 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
+
 /**
-  * _printf- produces given output
-  * @format: format to print
-  * Return: the output in a specific format
+  * _printf - implementing the pritf function
+  * @format: ...
+  * Return: ...
   *
   */
 int _printf(const char *format, ...)
 {
-	int i, count = 0;
-	char *x;
-	va_list ap;
+	unsigned int i = 0, ex_res = 0;
 
-	va_start(ap, format);
-	for (i = 0; format && format[i]; i++)
+	va_list args;
+
+	va_start(args, format);
+
+	for (; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
+		if (format[i] != '%')
 		{
+			_putchar(format[i]);
+		}
+		else if (format[i + 1] == 'c')
+		{
+			_putchar(va_arg(args, int));
 			i++;
-			switch (format[i])
-			{
-				case 'c':
-					putchar(va_arg(ap, int));
-					count++;
-					break;
-				case 's':
-					x = va_arg(ap, char *);
-					if (!x)
-						x = "(nil)";
-					while (*x)
-					{
-						putchar(*x++);
-						count++;
-					}
-					break;
-				case '%':
-					putchar('%');
-					count++;
-					break;
-			}
 		}
-		else
+		else if (format[i + 1] == 's')
 		{
-			putchar(format[i]);
-			count++;
+			int r_value = put_str(va_arg(args, char *));
+
+			i++;
+			ex_res += (r_value - 1);
 		}
+		else if (format[i + 1] == '%')
+		{
+			_putchar('%');
+			i++;
+		}
+		ex_res += 1;
 	}
-	va_end(ap);
-	return (count);
+	return (ex_res);
 }
