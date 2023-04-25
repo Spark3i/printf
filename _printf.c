@@ -3,7 +3,7 @@
 #include <stdarg.h>
 
 /**
-  * _printf - implementing the pritf function
+  * _printf - implementing the printf function
   * @format: ...
   * Return: ...
   *
@@ -43,10 +43,19 @@ int _printf(const char *format, ...)
 			putchar('%');
 			i++;
 		}
+<<<<<<< HEAD
 		else
 		{
 			putchar(format[i]);
 		}
+=======
+		else if ((format[i + 1] == 'd') || (format[i + 1] == 'i'))
+		{
+			get_int(va_arg(args, int));
+			i++;
+		}
+		ex_res += 1;
+>>>>>>> 469e03b46d8a913c8ed24f9eca1afa6b55f1c35c
 	}
 	va_end(args);
 	return (i);
