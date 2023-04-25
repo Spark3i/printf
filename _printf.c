@@ -1,62 +1,52 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
-
 /**
-  * _printf - implementing the printf function
-  * @format: ...
-  * Return: ...
+  * _printf- produces given output
+  * @format: format to print
+  * Return: the output in a specific format
   *
   */
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0;
+	int i, count = 0;
 	char *x;
-	va_list args;
+	va_list ap;
 
-	va_start(args, format);
-	for (; format[i] != '\0'; i++)
+	va_start(ap, format);
+	for (i = 0; format && format[i]; i++)
 	{
-		if (format[i] != '%')
+		if (format[i] == '%')
 		{
-			putchar(format[i]);
-		}
-		else if (format[i + 1] == 'c')
-		{
-			putchar(va_arg(args, int));
 			i++;
-		}
-		else if (format[i + 1] == 's')
-		{
-			x = (va_arg(args, char *));
-			if (!x)
-				x = "(nil)";
-			while (*x)
+			switch (format[i])
 			{
-				putchar(*x);
-				x++;
+				case 'c':
+					putchar(va_arg(ap, int));
+					count++;
+					break;
+				case 's':
+					x = va_arg(ap, char *);
+					if (!x)
+						x = "(nil)";
+					while (*x)
+					{
+						putchar(*x++);
+						count++;
+					}
+					break;
+				case '%':
+					putchar('%');
+					count++;
+					break;
 			}
-			i++;
 		}
-		else if (format[i + 1] == '%')
-		{
-			putchar('%');
-			i++;
-		}
-<<<<<<< HEAD
 		else
 		{
 			putchar(format[i]);
+			count++;
 		}
-=======
-		else if ((format[i + 1] == 'd') || (format[i + 1] == 'i'))
-		{
-			get_int(va_arg(args, int));
-			i++;
-		}
-		ex_res += 1;
->>>>>>> 469e03b46d8a913c8ed24f9eca1afa6b55f1c35c
 	}
-	va_end(args);
-	return (i);
+	va_end(ap);
+	return (count);
 }
