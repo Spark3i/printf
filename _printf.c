@@ -37,6 +37,11 @@ int _printf(const char *format, ...)
 			_putchar('%');
 			i++;
 		}
+		else if ((format[i + 1] == 'd') || (format[i + 1] == 'i'))
+		{
+			get_int(va_arg(args, int));
+			i++;
+		}
 		ex_res += 1;
 	}
 	return (ex_res);
