@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
   * put_str - ...
@@ -14,7 +15,7 @@ int put_str(char *string)
 	{
 		while (string[idx] != '\0')
 		{
-			_putchar(string[idx]);
+			putchar(string[idx]);
 			r_value += 1;
 			idx++;
 		}

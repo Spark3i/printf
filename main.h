@@ -1,9 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdarg.h>
-#include <unistd.h>
-int _task1(const char *format, ...);
+int print_numbers(int n);
 int _putchar(char z);
 int _printf(const char *format, ...);
 int put_str(char *string);
