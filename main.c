@@ -14,6 +14,10 @@ int main(void)
 	unsigned int ui;
 	void *addr;
 
+	 _printf("%");
+	 _printf("%!\n");
+	 _printf("%K\n");
+	_printf(NULL);
 	_printf("%c\n", 'a');
 	_printf("%c,   %s\n", 'b', "print this testing");
 	_printf("%%%%%c\n", 'a');
