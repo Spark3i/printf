@@ -9,24 +9,32 @@
 int _task1(const char *format, ...)
 {
 	unsigned int i, count = 0;
+	int num;
 	va_list ap;
 
 	va_start(ap, format);
-	while (format[i])
+	for (i = 0; format[i]; i++)
 	{
 		if (format[i] == '%')
 		{
 			switch (format[i + 1])
 			{
 				case 'd':
-					printf("%d", va_arg(ap, int));
-					count++;
+					num = va_arg(ap, int);
+					printf("%d%d", num, num);
+					count += 2;
+					i++;
 					break;
 				case 'i':
-					printf("%i", va_arg(ap, int));
-					count++;
+					num = va_arg(ap, int);
+					printf("%i%i", num, num);
+
+					count += 2;
+					i++;
 					break;
 				default:
+					putchar(format[i]);
+					count++;
 					break;
 			}
 		}
@@ -35,7 +43,6 @@ int _task1(const char *format, ...)
 			putchar(format[i]);
 			count++;
 		}
-		i++;
 	}
 	va_end(ap);
 	return (count);
