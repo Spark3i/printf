@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 				case 's':
 					x = va_arg(ap, char *);
 					if (!x)
-						x = "(nil)";
+						x = "(null)";
 					while (*x)
 					{
 						putchar(*x++);
